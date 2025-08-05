@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import {
-  User, Car, History, MessageCircle, Home, MapPin, Calendar, Users, ArrowRight, Search, X, Clock
+  User, Car, History, MessageCircle, Home, MapPin, Calendar, Users, ArrowRight, Search, X, Clock, LogIn, UserPlus
 } from "lucide-react";
 import heroImage from "@/assets/rideshare-hero.jpg";
 
@@ -138,22 +139,41 @@ const SearchForm = () => {
                 RideShare
               </div>
             </div>
-            <div className="hidden md:block">
-              <div className="flex items-center space-x-1">
-                {navItems.map(({ id, icon: Icon, label }) => (
-                  <button
-                    key={id}
-                    onClick={() => setActive(id)}
-                    className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-all duration-300 ${
-                      active === id
-                        ? "bg-gradient-primary text-white shadow-primary"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                    }`}
-                  >
-                    <Icon size={18} />
-                    <span className="font-medium">{label}</span>
-                  </button>
-                ))}
+            <div className="flex items-center gap-6">
+              <div className="hidden md:block">
+                <div className="flex items-center space-x-1">
+                  {navItems.map(({ id, icon: Icon, label }) => (
+                    <button
+                      key={id}
+                      onClick={() => setActive(id)}
+                      className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-all duration-300 ${
+                        active === id
+                          ? "bg-gradient-primary text-white shadow-primary"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      }`}
+                    >
+                      <Icon size={18} />
+                      <span className="font-medium">{label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-3">
+                <Link 
+                  to="/login" 
+                  className="px-4 py-2 rounded-lg flex items-center gap-2 text-primary border border-primary/30 hover:bg-primary/5 transition-all duration-300 hover-scale"
+                >
+                  <LogIn size={18} />
+                  <span className="font-medium">Login</span>
+                </Link>
+                <Link 
+                  to="/register" 
+                  className="px-4 py-2 rounded-lg flex items-center gap-2 bg-gradient-primary text-white shadow-primary hover:shadow-floating transition-all duration-300 hover-scale"
+                >
+                  <UserPlus size={18} />
+                  <span className="font-medium">Register</span>
+                </Link>
               </div>
             </div>
           </div>
